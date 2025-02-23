@@ -43,21 +43,23 @@ inline pros::ADIDigitalOut mogo(1, false);
 //Chassis + Lemlib Settings
 inline pros::IMU imu(3);
 inline pros::Rotation horizontal_encoder(17);
-inline lemlib::TrackingWheel horizontal_tracking_wheel_config(&horizontal_encoder, lemlib::Omniwheel::NEW_2, 2);
+inline pros::Rotation vertical_encoder(8);
+inline lemlib::TrackingWheel vertical_tracking_wheel(&vertical_encoder, lemlib::Omniwheel::NEW_2, -0.0984);
+inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, -1.775);
 
 inline lemlib::Drivetrain drivetrain(
     &left_drive, // left motor group
     &right_drive, // right motor group
-    10, // 10 inch track width
-    lemlib::Omniwheel::NEW_275, // using new 4" omnis
+    12.125, // 12.125 inch track width
+    lemlib::Omniwheel::NEW_275, // using new 2.75" omnis
     600, // drivetrain rpm is 360
     2 // horizontal drift is 2 (for now)
 );
 
 inline lemlib::OdomSensors sensors(
-    nullptr, // vertical tracking wheel 1, set to null
+    &vertical_tracking_wheel, // vertical tracking wheel 1, set to null
     nullptr, // vertical tracking wheel 2, set to nullptr as we are using IMEs
-    &horizontal_tracking_wheel_config, // horizontal tracking wheel 1
+    &horizontal_tracking_wheel, // horizontal tracking wheel 1
     nullptr, // horizontal tracking wheel 2, set to nullptr as we don't have a second one
     &imu // inertial sensor
 );
@@ -92,3 +94,4 @@ inline lemlib::Chassis chassis(drivetrain, // drivetrain settings
     angular_controller, // angular PID settings
     sensors // odometry sensors
 );
+
