@@ -1,6 +1,6 @@
 #include "main.h"
 #include "settings.hpp"
-
+#include "arm_pid.hpp"
 
 void intake_and_hooks(){
     if ((USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_IN_BUTTON)){
@@ -25,7 +25,7 @@ void mogo_and_doinker(){
     }
 }
 
-/*u64 arm_pos_i = 0;
+u64 arm_pos_i = 0;
 void arm_move(){
     if ((ARM_POSITION_TOGGLE_BUTTON)){
         arm_pos_i = arm_pos_i < (sizeof(arm_positions) / sizeof(arm_positions[0]) - 1) ? arm_pos_i + 1 : 0;
@@ -34,7 +34,7 @@ void arm_move(){
     if (arm_pos_i == (ARM_I_FOR_SCORING)){
         hooks.move(-50);
     }
-}*/
+}
 
 f80 drive_curve_max = (USER_CONTROL_DRIVE_CURVE((127)));
 #define USER_CONTROL_DRIVE_CURVE_SCALED(original)(127 / drive_curve_max * (USER_CONTROL_DRIVE_CURVE((original))))
@@ -52,10 +52,10 @@ void opcontrol(){
         right_drive.move(straight_joystick_value - turn_joystick_value);
         pros::lcd::print(1, "linear: %lf\nangular: %lf", (double)(straight_joystick_value), (double)(turn_joystick_value));
         pros::lcd::print(3, "arm_rs read position: %lf", (f64)(ARM_PID_GET_DEGREES));
-        //pros::lcd::print(4, arm::reached_target() ? "arm pid has reached target position" : "arm pid is moving to target position");
+        pros::lcd::print(4, arm::reached_target() ? "arm pid has reached target position" : "arm pid is moving to target position");
         mogo_and_doinker();
         intake_and_hooks();
-        //arm_move();
+        arm_move();
         pros::delay(10);
     }
 }
