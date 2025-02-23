@@ -12,12 +12,17 @@ void intake_and_hooks(){
     }
 }
 
-bool doinker_status = false;
+bool doinker_status_r = false;
+bool doinker_status_l = false;
 bool mogo_status = false;
 void mogo_and_doinker(){
-    if ((USER_CONTROL_DOINKER_BUTTON)){
-        doinker_status = !doinker_status;
-        doinker.set_value(doinker_status);
+    if ((USER_CONTROL_DOINKER_RIGHT_BUTTON)){
+        doinker_status_r = !doinker_status_r;
+        dR.set_value(doinker_status_r);
+    }
+    if ((USER_CONTROL_DOINKER_LEFT_BUTTON)){
+        doinker_status_l = !doinker_status_l;
+        dL.set_value(doinker_status_l);
     }
     if ((USER_CONTROL_MOGO_BUTTON)){
         mogo_status = !mogo_status;

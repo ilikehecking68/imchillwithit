@@ -35,10 +35,13 @@ inline pros::Motor hooks(1);
 #define USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_OUT_BUTTON controller.get_digital(DIGITAL_R2)
 
 //Doinker + Mobile-Goal-Clamp Settings
-inline pros::ADIDigitalOut doinker(4, false);
-#define USER_CONTROL_DOINKER_BUTTON controller.get_digital_new_press(DIGITAL_UP)
+inline pros::ADIDigitalOut dR(3, false);
+inline pros::ADIDigitalOut dL(2, false);
+#define USER_CONTROL_DOINKER_RIGHT_BUTTON controller.get_digital_new_press(DIGITAL_UP)
+#define USER_CONTROL_DOINKER_LEFT_BUTTON controller.get_digital_new_press(DIGITAL_X)
 inline pros::ADIDigitalOut mogo(1, false);
 #define USER_CONTROL_MOGO_BUTTON controller.get_digital_new_press(DIGITAL_A)
+
 
 //Chassis + Lemlib Settings
 inline pros::IMU imu(3);
@@ -65,26 +68,37 @@ inline lemlib::OdomSensors sensors(
 );
 
 // lateral PID controller
-inline lemlib::ControllerSettings lateral_controller(10, // proportional gain (kP)
+inline lemlib::ControllerSettings lateral_controller(7, // proportional gain (kP)
+                                                        0, // integral gain (kI)
+                                                        10, // derivative gain (kD)
+                                                        0, // anti windup
+                                                        0, // small error range, in inches
+                                                        0, // small error range timeout, in milliseconds
+                                                        0, // large error range, in inches
+                                                        0, // large error range timeout, in milliseconds
+                                                        0 // maximum acceleration (slew)
+                                                                                                /*
+                                              20, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              3, // derivative gain (kD)
-                                              3, // anti windup
-                                              1, // small error range, in inches
-                                              100, // small error range timeout, in milliseconds
-                                              3, // large error range, in inches
-                                              500, // large error range timeout, in milliseconds
-                                              20 // maximum acceleration (slew)
+                                              100, // derivative gain (kD)
+                                              0, // anti windup
+                                              0, // small error range, in inches
+                                              0, // small error range timeout, in milliseconds
+                                              0, // large error range, in inches
+                                              0, // large error range timeout, in milliseconds
+                                              0 // maximum acceleration (slew)
+                                              */
 );
 
 // angular PID controller
-inline lemlib::ControllerSettings angular_controller(2, // proportional gain (kP)
+inline lemlib::ControllerSettings angular_controller(5, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              10, // derivative gain (kD)
-                                              3, // anti windup
-                                              1, // small error range, in degrees
-                                              100, // small error range timeout, in milliseconds
-                                              3, // large error range, in degrees
-                                              500, // large error range timeout, in milliseconds
+                                              30, // derivative gain (kD)
+                                              0, // anti windup
+                                              0, // small error range, in degrees
+                                              0, // small error range timeout, in milliseconds
+                                              0, // large error range, in degrees
+                                              0, // large error range timeout, in milliseconds
                                               0 // maximum acceleration (slew)
 );
 
