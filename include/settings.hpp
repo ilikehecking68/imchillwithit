@@ -45,7 +45,7 @@ inline pros::ADIDigitalOut mogo(1, false);
 
 //Chassis + Lemlib Settings
 inline pros::IMU imu(3);
-inline pros::Rotation horizontal_encoder(17);
+inline pros::Rotation horizontal_encoder(-17);
 inline pros::Rotation vertical_encoder(8);
 inline lemlib::TrackingWheel vertical_tracking_wheel(&vertical_encoder, lemlib::Omniwheel::NEW_2, -0.0984);
 inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_encoder, lemlib::Omniwheel::NEW_2, -1.775);
@@ -56,7 +56,7 @@ inline lemlib::Drivetrain drivetrain(
     12.125, // 12.125 inch track width
     lemlib::Omniwheel::NEW_275, // using new 2.75" omnis
     600, // drivetrain rpm is 360
-    2 // horizontal drift is 2 (for now)
+    7.5 // horizontal drift is 2 (for now)
 );
 
 inline lemlib::OdomSensors sensors(
@@ -68,15 +68,15 @@ inline lemlib::OdomSensors sensors(
 );
 
 // lateral PID controller
-inline lemlib::ControllerSettings lateral_controller(7, // proportional gain (kP)
-                                                        0, // integral gain (kI)
-                                                        10, // derivative gain (kD)
-                                                        0, // anti windup
-                                                        0, // small error range, in inches
-                                                        0, // small error range timeout, in milliseconds
-                                                        0, // large error range, in inches
-                                                        0, // large error range timeout, in milliseconds
-                                                        0 // maximum acceleration (slew)
+inline lemlib::ControllerSettings lateral_controller(4, // proportional gain (kP)
+                                                        0.3, // integral gain (kI)
+                                                        3, // derivative gain (kD)
+                                                        3, // anti windup
+                                                        1, // small error range, in inches
+                                                        100, // small error range timeout, in milliseconds
+                                                        3, // large error range, in inches
+                                                        500, // large error range timeout, in milliseconds
+                                                        20 // maximum acceleration (slew)
                                                                                                 /*
                                               20, // proportional gain (kP)
                                               0, // integral gain (kI)
@@ -93,7 +93,7 @@ inline lemlib::ControllerSettings lateral_controller(7, // proportional gain (kP
 // angular PID controller
 inline lemlib::ControllerSettings angular_controller(5, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              30, // derivative gain (kD)
+                                              32, // derivative gain (kD)
                                               0, // anti windup
                                               0, // small error range, in degrees
                                               0, // small error range timeout, in milliseconds
