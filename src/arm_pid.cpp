@@ -39,13 +39,6 @@ void arm::wait_until_reached_target(){
 
 pros::Task arm::arm_pid_task {[]{
     pros::Mutex mut;
-    mut.take();
-    arm_motor.move(-127);
-    pros::delay(100);
-    arm_motor.move(0);
-    pros::delay(100);
-    arm_rs.reset_position();
-    mut.give();
     while (true){
         mut.take();
         error = target - (ARM_PID_GET_DEGREES);
