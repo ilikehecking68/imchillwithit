@@ -29,15 +29,17 @@ void initialize() {
     chassis.calibrate(); // calibrate sensors
     optical.set_led_pwm(100);
     optical.set_integration_time(20);
+    intake_helper_task.suspend();
 
     arm::arm_pid_task.resume();
     // print position to brain screen
     pros::Task screen_task([&]() {
+        pros::Mutex mut;
         while (true) {
             // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            mut.take();
+            pros::lcd::print(1, "X: %f, Y: %f, Theta: %f", chassis.getPose().x, chassis.getPose().y, chassis.getPose().theta);
+            mut.give();
             // delay to save resources
             pros::delay(20);
         }

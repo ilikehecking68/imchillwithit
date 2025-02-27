@@ -60,10 +60,16 @@ void skills_v1() {
     chassis.waitUntilDone();
     chassis.moveToPose(-45, -3, -90, 3000, {.forwards = false, .lead = 0.5, .maxSpeed = 75, .minSpeed = 70});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-56, -3, 3000, {.minSpeed = 30});
+    chassis.moveToPoint(-60, -3, 3000, {.minSpeed = 30});
     chassis.waitUntilDone();
-    chassis.turnToHeading(165, 3000, {.maxSpeed = 55, .minSpeed = 50});
+    chassis.turnToHeading(180, 1000);
     chassis.waitUntilDone();
+    chassis.moveToPoint(-60, -5, 1000, {.forwards = false});
+    chassis.waitUntilDone();
+    mogo.set_value(false);
+
+
+    chassis.moveToPoint(12, -80, 3000);
 
     //chassis.moveToPoint(-55, -2, 3000, {.forwards = false, .minSpeed = 60});
     //chassis.waitUntilDone();
@@ -116,4 +122,5 @@ void skills_v1() {
 
 void autonomous() {
     skills_v1();
+
 }

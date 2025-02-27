@@ -65,9 +65,9 @@ void opcontrol(){
         }
         left_drive.move(straight_joystick_value + turn_joystick_value);
         right_drive.move(straight_joystick_value - turn_joystick_value);
-        pros::lcd::print(1, "linear: %lf\nangular: %lf", (double)(straight_joystick_value), (double)(turn_joystick_value));
-        pros::lcd::print(3, "arm_rs read position: %lf", (f64)(ARM_PID_GET_DEGREES));
-        pros::lcd::print(4, arm::reached_target() ? "arm pid has reached target position" : "arm pid is moving to target position");
+        pros::lcd::print(3, "linear: %lf\nangular: %lf", (double)(straight_joystick_value), (double)(turn_joystick_value));
+        pros::lcd::print(4, "arm_rs read position: %lf", (f64)(ARM_PID_GET_DEGREES));
+        pros::lcd::print(5, arm::reached_target() ? "arm pid has reached target position" : "arm pid is moving to target position");
         mogo_and_doinker();
         intake_and_hooks();
         arm_move();
