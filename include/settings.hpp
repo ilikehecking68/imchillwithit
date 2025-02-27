@@ -26,10 +26,10 @@ inline pros::Rotation arm_rs(9);
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
 inline f64 arm_positions[] = {0, 115, 500};
 #define ARM_I_FOR_SCORING 2
-#define ARM_MAX_CLOCK_CYCLES_FOR_A 100
 
 //Intake + Hooks Settings
 inline pros::MotorGroup intake_rollers_and_hooks({2, 1});
+inline pros::Motor intake_rollers(2);
 inline pros::Motor hooks(1);
 #define USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_IN_BUTTON controller.get_digital(DIGITAL_R1)
 #define USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_OUT_BUTTON controller.get_digital(DIGITAL_R2)
@@ -42,6 +42,9 @@ inline pros::ADIDigitalOut dL(2, false);
 inline pros::ADIDigitalOut mogo(1, false);
 #define USER_CONTROL_MOGO_BUTTON controller.get_digital_new_press(DIGITAL_A)
 
+//Color Sort + Optical Sensor Settings
+inline pros::Optical optical(15);
+#define COLOR_SORT_THRESHOLD 50
 
 //Chassis + Lemlib Settings
 inline pros::IMU imu(3);

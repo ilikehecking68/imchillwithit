@@ -1,5 +1,7 @@
 #include "main.h"
 #include "settings.hpp"
+#include "arm_pid.hpp"
+#include "colorsort.hpp"
 /**
  * A callback function for LLEMU's center button.
  *
@@ -25,6 +27,10 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
+    optical.set_led_pwm(100);
+    optical.set_integration_time(20);
+
+    arm::arm_pid_task.resume();
     // print position to brain screen
     pros::Task screen_task([&]() {
         while (true) {

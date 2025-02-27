@@ -22,19 +22,13 @@ float arm::arm_pid_get_target(){
 bool arm::reached_target(){
     pros::Mutex mut;
     mut.take();
-    bool reached_target = arm::arm_pid.update(target - ARM_PID_GET_DEGREES);
+    bool reached_target = error <= (ARM_PID_ERROR_DEADZONE);
     mut.give();
     return reached_target;
 }
 
 void arm::wait_until_reached_target(){
-    pros::Mutex mut;
-    bool wait = true;
-    while (wait){
-        mut.take();
-        wait = std::fabs(error) > (ARM_PID_ERROR_DEADZONE);
-        mut.give();
-    }
+    while (!reached_target()){}
 }
 
 pros::Task arm::arm_pid_task {[]{

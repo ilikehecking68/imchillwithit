@@ -1,14 +1,24 @@
 #include "main.h"
 #include "settings.hpp"
 #include "arm_pid.hpp"
+#include "colorsort.hpp"
 
 void intake_and_hooks(){
     if ((USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_IN_BUTTON)){
-        intake_rollers_and_hooks.move(127);
+        intake_rollers.move(127);
+        if (!intake_override){
+            hooks.move(127);
+        }
     } else if ((USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_OUT_BUTTON)){
-        intake_rollers_and_hooks.move(-127);
+        intake_rollers.move(-127);
+        if (!intake_override){
+            hooks.move(-127);
+        }
     } else {
-        intake_rollers_and_hooks.move(0);
+        intake_rollers.move(0);
+        if (!intake_override){
+            hooks.move(0);
+        }
     }
 }
 
