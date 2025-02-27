@@ -24,7 +24,7 @@ inline pros::Rotation arm_rs(9);
 #define ARM_PID_INTEGRAL_LIMIT 999
 #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
-inline f64 arm_positions[] = {0, 126,44 500};
+inline f64 arm_positions[] = {0, 126, 500};
 #define ARM_I_FOR_SCORING 2
 
 //Intake + Hooks Settings
