@@ -53,7 +53,7 @@ void skills_v1() {
     chassis.waitUntilDone();
     chassis.moveToPose(-23, -32, -135, 3000, {.lead = 0.4, .maxSpeed = 65, .minSpeed = 60});
     chassis.waitUntilDone();
-    chassis.moveToPose(-68, -54, -90, 3000, {.lead = 0.35, .maxSpeed = 62, .minSpeed = 60});
+    chassis.moveToPose(-64, -56, -85, 3000, {.lead = 0.5, .maxSpeed = 62, .minSpeed = 60});
     chassis.waitUntilDone();
     chassis.moveToPose(-47, -55, 0, 2000, {.forwards = false, .lead = 0.5, .maxSpeed = 55, .minSpeed = 52});
     chassis.waitUntilDone();
@@ -135,6 +135,20 @@ void skills_v1() {
     //grab 3rd ring, wallstake that w/ skidstake score
     //chassis.turnToHeading(49, 1000, {.maxSpeed = 105, .minSpeed = 100});
     //chassis.waitUntilDone();*/
+}
+
+void goal_rush_finals_blue(){
+    mogo.set_value(false);
+    chassis.setPose(0.639, 7.095, 11.346);
+    chassis.moveToPose(9.7406, 48.079, 11.02, 4000, {.lead = 0.07, .minSpeed = 127});
+    chassis.waitUntilDone();
+    dR.set_value(true); //down
+    chassis.moveToPose(13.899, 24.25, -90, 3000, {.forwards = false, .lead = 0.7, .maxSpeed = 102, .minSpeed = 100, .earlyExitRange = 1.25});
+    chassis.waitUntilDone();
+    dR.set_value(false);
+    chassis.moveToPose(35.936, 20.967, 11.9, 2000, {.forwards = false, .lead = 0.5, .minSpeed = 120});
+    chassis.waitUntilDone();
+    
 }
 
 void autonomous() {
