@@ -1,10 +1,9 @@
 #include "main.h"
 #include "colorsort.hpp"
 #include "settings.hpp"
-bool intake_override = false;
-#define racist_to_red (true)
-#define racist_to_blue (false)
-#define racism racist_to_red
+bool intake_override = true;
+
+bool racism = racist_to_red;
 
 constexpr float RED_HUE = 12;
 constexpr float BLUE_HUE = 215;

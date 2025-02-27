@@ -30,7 +30,8 @@ void initialize() {
     optical.set_led_pwm(100);
     optical.set_integration_time(20);
     intake_helper_task.suspend();
-
+    arm_rs.reset_position();
+    arm_rs.reverse();
     arm::arm_pid_task.resume();
     // print position to brain screen
     pros::Task screen_task([&]() {

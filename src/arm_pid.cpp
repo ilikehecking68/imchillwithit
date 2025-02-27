@@ -7,14 +7,14 @@ float arm::error = 0;
 void arm::arm_pid_set_target(float new_target){
     pros::Mutex mut;
     mut.take();
-    arm::target = new_target;
+    target = new_target;
     mut.give();
 }
 
 float arm::arm_pid_get_target(){
     pros::Mutex mut;
     mut.take();
-    float retreived_target = arm::target;
+    float retreived_target = target;
     mut.give();
     return retreived_target;
 }

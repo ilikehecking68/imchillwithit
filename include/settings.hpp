@@ -19,12 +19,12 @@ inline pros::MotorGroup left_drive(/*ports*/{-13, -14, 12}, pros::MotorGears::bl
 inline pros::Motor arm_motor(10 /*port*/, pros::MotorGears::green, pros::MotorEncoderUnits::degrees);
 inline pros::Rotation arm_rs(9);
 #define ARM_PID_GET_DEGREES (double)(arm_rs.get_position() / 100)
-#define ARM_PID_CONSTANTS /*kp*/ 2.652, /*ki*/ 0, /*kd*/ 27
+#define ARM_PID_CONSTANTS /*kp*/ 3, /*ki*/ 0, /*kd*/ 22
 #define ARM_PID_ERROR_DEADZONE 5
 #define ARM_PID_INTEGRAL_LIMIT 999
 #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
-inline f64 arm_positions[] = {0, 115, 500};
+inline f64 arm_positions[] = {0, 126,44 500};
 #define ARM_I_FOR_SCORING 2
 
 //Intake + Hooks Settings
@@ -71,7 +71,7 @@ inline lemlib::OdomSensors sensors(
 );
 
 // lateral PID controller
-inline lemlib::ControllerSettings lateral_controller(4, // proportional gain (kP)
+inline lemlib::ControllerSettings lateral_controller(3.875, // proportional gain (kP)
                                                         0.3, // integral gain (kI)
                                                         3, // derivative gain (kD)
                                                         3, // anti windup
@@ -94,7 +94,7 @@ inline lemlib::ControllerSettings lateral_controller(4, // proportional gain (kP
 );
 
 // angular PID controller
-inline lemlib::ControllerSettings angular_controller(5, // proportional gain (kP)
+inline lemlib::ControllerSettings angular_controller(4.875, // proportional gain (kP)
                                               0, // integral gain (kI)
                                               32, // derivative gain (kD)
                                               0, // anti windup
