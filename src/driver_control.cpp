@@ -40,7 +40,7 @@ void mogo_and_doinker(){
     }
 }
 
-u64 arm_pos_i = 1;
+u64 arm_pos_i = 0;
 void arm_move(){
     if ((ARM_POSITION_TOGGLE_BUTTON)){
         arm_pos_i = arm_pos_i < (sizeof(arm_positions) / sizeof(arm_positions[0]) - 1) ? arm_pos_i + 1 : 0;
