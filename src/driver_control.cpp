@@ -49,6 +49,9 @@ void arm_move(){
     if (arm_pos_i == (ARM_I_FOR_SCORING)){
         hooks.move(-10);
     }
+    if ((ARM_BUTTON_TO_TIP_MOGO)){
+        arm::arm_pid_set_target(ARM_POSITION_ALLIANCE_STAKE);
+    }
 }
 
 f80 drive_curve_max = (USER_CONTROL_DRIVE_CURVE((127)));

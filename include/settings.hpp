@@ -19,18 +19,19 @@ inline pros::MotorGroup left_drive(/*ports*/{-13, -14, 12}, pros::MotorGears::bl
 inline pros::Motor arm_motor(10 /*port*/, pros::MotorGears::green, pros::MotorEncoderUnits::degrees);
 inline pros::Rotation arm_rs(9);
 #define ARM_PID_GET_DEGREES (double)(arm_rs.get_position() / 100)
-#define ARM_PID_CONSTANTS /*kp*/ 5, /*ki*/ 0, /*kd*/ 30
+#define ARM_PID_CONSTANTS /*kp*/ 4, /*ki*/ 0, /*kd*/ 45
 #define ARM_PID_ERROR_DEADZONE 5
 #define ARM_PID_INTEGRAL_LIMIT 999
 #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
-inline f64 arm_positions[] = {10, 133, 466};
+inline f64 arm_positions[] = {-133, 30, 333};
 #define ARM_POSITION_LOWEST (arm_positions[0])
 #define ARM_POSITION_LOADING (arm_positions[1])
 #define ARM_POSITION_SCORING (arm_positions[2])
-#define ARM_POSITION_ALLIANCE_STAKE 500
+#define ARM_POSITION_ALLIANCE_STAKE 450
 #define ARM_I_FOR_SCORING 2
 #define ARM_SCORING_HOOKS_BACKSPEED -10
+#define ARM_BUTTON_TO_TIP_MOGO controller.get_digital_new_press(DIGITAL_RIGHT)
 
 //Intake + Hooks Settings
 inline pros::MotorGroup intake_rollers_and_hooks({2, 1});

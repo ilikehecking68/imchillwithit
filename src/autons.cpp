@@ -4,9 +4,9 @@
 #include "arm_pid.hpp"
 
 void skills_v1() {
-    arm_motor.move(127);
-    pros::delay(300);
-    arm_motor.move(-100);
+    ARM_SET_AND_WAIT(ARM_POSITION_ALLIANCE_STAKE);
+    pros::delay(1000);
+    arm::arm_pid_set_target(ARM_POSITION_LOWEST);
     mogo.set_value(false);
     chassis.setPose(0, 0, -40);
     chassis.moveToPoint(9, -10.5, 1000, {.forwards = false, .maxSpeed = 38, .minSpeed = 35});
@@ -60,9 +60,9 @@ void skills_v1() {
     chassis.waitUntilDone();
     chassis.moveToPoint(-47, 10, 4000, {.maxSpeed = 40});
     chassis.waitUntilDone();
-    chassis.moveToPose(-42, -2, -90, 3000, {.forwards = false, .lead = 0.5, .maxSpeed = 75, .minSpeed = 70});
+    chassis.moveToPose(-40, -2, -90, 3000, {.forwards = false, .lead = 0.5, .maxSpeed = 75, .minSpeed = 70});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-60, -3, 3000, {.maxSpeed = 32, .minSpeed = 30});
+    chassis.moveToPoint(-60, -5.5, 3000, {.maxSpeed = 32, .minSpeed = 30});
     chassis.waitUntilDone();
     chassis.turnToHeading(180, 1000, {.maxSpeed = 60});
     chassis.waitUntilDone();
@@ -72,25 +72,28 @@ void skills_v1() {
     intake_rollers_and_hooks.move(50);
     chassis.moveToPose(22, -98, -135, 10000, {.lead = 0.2, .minSpeed = 110});
     chassis.waitUntilDone();
-    intake_rollers_and_hooks.move(10);
+    intake_rollers_and_hooks.move(11);
     chassis.turnToHeading(80, 1000, {.minSpeed = 100});
     chassis.waitUntilDone();
     chassis.moveToPose(-10, -105, 80, 4000, {.forwards = false, .lead = 0.3, .maxSpeed = 30});
     chassis.waitUntilDone();
     mogo.set_value(true);
-    pros::delay(100);
+    pros::delay(300);
     intake_rollers_and_hooks.move(127);
-    chassis.moveToPose(-34, -84, -90, 6000, {.lead = 0.75, .maxSpeed = 72, .minSpeed = 70, .earlyExitRange = 2});
+    chassis.moveToPose(-34, -77, -90, 4000, {.lead = 0.2, .maxSpeed = 72, .minSpeed = 70});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-60, -85, 3000, {.maxSpeed = 50});
+    chassis.moveToPoint(-60, -77, 2000, {.maxSpeed = 50});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-55, -85, 1800, {.minSpeed = 80});
+    chassis.moveToPoint(-55, -77, 1800, {.minSpeed = 80});
     chassis.waitUntilDone();
-    chassis.turnToHeading(170, 1000, {.maxSpeed = 52, .minSpeed = 50});
-    chassis.moveToPose(0, -105, 90, 8000, {.lead = 0.7, .minSpeed = 100, .earlyExitRange = 3.5});
+    chassis.turnToHeading(165, 1000, {.maxSpeed = 52, .minSpeed = 50});
+    chassis.moveToPose(0, -105, 90, 8000, {.lead = 0.4, .minSpeed = 100});
     chassis.waitUntilDone();
     racism = racist_to_blue;
     intake_helper_task.resume();
+    chassis.moveToPoint(-25, -105, 2000, {.maxSpeed = 54, .minSpeed = 52});
+    chassis.waitUntilDone();
+
 
     //chassis.moveToPoint(-55, -2, 3000, {.forwards = false, .minSpeed = 60});
     //chassis.waitUntilDone();
@@ -143,6 +146,8 @@ void skills_v1() {
 
 void goal_rush_finals_blue(){
     mogo.set_value(false);
+    racism = racist_to_blue;
+    intake_helper_task.resume();
     chassis.setPose(0.639, 7.095, 11.346);
     chassis.moveToPose(9.7406, 48.079, 11.02, 4000, {.lead = 0.07, .minSpeed = 127});
     chassis.waitUntilDone();
@@ -156,5 +161,4 @@ void goal_rush_finals_blue(){
 
 void autonomous() {
     skills_v1();
-
 }
