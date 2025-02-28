@@ -1,0 +1,53 @@
+commit a748a188509b6c1500ab0de271993441a4ccecbd
+Author: pkoka <prathamkoka3hawks@gmail.com>
+Date:   Wed Feb 26 23:23:39 2025 -0800
+
+    added most of second part of skills tuned arm and more + colorsort of version
+
+diff --git a/include/settings.hpp b/include/settings.hpp
+index 02a419e..8e60bef 100644
+--- a/include/settings.hpp
++++ b/include/settings.hpp
+@@ -24,7 +24,7 @@ inline pros::Rotation arm_rs(9);
+ #define ARM_PID_INTEGRAL_LIMIT 999
+ #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
+ #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
+-inline f64 arm_positions[] = {0, 126,44 500};
++inline f64 arm_positions[] = {0, 126,44, 500};
+ #define ARM_I_FOR_SCORING 2
+ 
+ //Intake + Hooks Settings
+diff --git a/src/autons.cpp b/src/autons.cpp
+index 7d5eb34..e804121 100644
+--- a/src/autons.cpp
++++ b/src/autons.cpp
+@@ -53,7 +53,7 @@ void skills_v1() {
+     chassis.waitUntilDone();
+     chassis.moveToPose(-23, -32, -135, 3000, {.lead = 0.4, .maxSpeed = 65, .minSpeed = 60});
+     chassis.waitUntilDone();
+-    chassis.moveToPose(-68, -54, -90, 3000, {.lead = 0.35, .maxSpeed = 62, .minSpeed = 60});
++    chassis.moveToPose(-64, -56, -85, 3000, {.lead = 0.5, .maxSpeed = 62, .minSpeed = 60});
+     chassis.waitUntilDone();
+     chassis.moveToPose(-47, -55, 0, 2000, {.forwards = false, .lead = 0.5, .maxSpeed = 55, .minSpeed = 52});
+     chassis.waitUntilDone();
+@@ -137,6 +137,20 @@ void skills_v1() {
+     //chassis.waitUntilDone();*/
+ }
+ 
++void goal_rush_finals_blue(){
++    mogo.set_value(false);
++    chassis.setPose(0.639, 7.095, 11.346);
++    chassis.moveToPose(9.7406, 48.079, 11.02, 4000, {.lead = 0.07, .minSpeed = 127});
++    chassis.waitUntilDone();
++    dR.set_value(true); //down
++    chassis.moveToPose(13.899, 24.25, -90, 3000, {.forwards = false, .lead = 0.7, .maxSpeed = 102, .minSpeed = 100, .earlyExitRange = 1.25});
++    chassis.waitUntilDone();
++    dR.set_value(false);
++    chassis.moveToPose(35.936, 20.967, 11.9, 2000, {.forwards = false, .lead = 0.5, .minSpeed = 120});
++    chassis.waitUntilDone();
++    
++}
++
+ void autonomous() {
+     skills_v1();
+ 
