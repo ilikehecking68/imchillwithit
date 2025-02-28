@@ -10,7 +10,7 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 #define USER_CONTROL_TURN_JOYSTICK controller.get_analog(ANALOG_RIGHT_X)
 #define USER_CONTROL_JOYSTICK_DEADZONE 12
 #define USER_CONTROL_DRIVE_SPEED_PERCENT 100
-#define USER_CONTROL_TURN_SPEED_PERCENT 100
+#define USER_CONTROL_TURN_SPEED_PERCENT 80
 #define USER_CONTROL_DRIVE_CURVE(original) original/*0.01 * std::fabs(original)*original*/
 inline pros::MotorGroup right_drive(/*ports*/{19, 18, -20}, pros::MotorGears::blue, pros::MotorEncoderUnits::degrees);
 inline pros::MotorGroup left_drive(/*ports*/{-13, -14, 12}, pros::MotorGears::blue, pros::MotorEncoderUnits::degrees);
@@ -19,13 +19,18 @@ inline pros::MotorGroup left_drive(/*ports*/{-13, -14, 12}, pros::MotorGears::bl
 inline pros::Motor arm_motor(10 /*port*/, pros::MotorGears::green, pros::MotorEncoderUnits::degrees);
 inline pros::Rotation arm_rs(9);
 #define ARM_PID_GET_DEGREES (double)(arm_rs.get_position() / 100)
-#define ARM_PID_CONSTANTS /*kp*/ 3, /*ki*/ 0, /*kd*/ 22
+#define ARM_PID_CONSTANTS /*kp*/ 5, /*ki*/ 0, /*kd*/ 30
 #define ARM_PID_ERROR_DEADZONE 5
 #define ARM_PID_INTEGRAL_LIMIT 999
 #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
-inline f64 arm_positions[] = {0, 126, 500};
+inline f64 arm_positions[] = {10, 133, 466};
+#define ARM_POSITION_LOWEST (arm_positions[0])
+#define ARM_POSITION_LOADING (arm_positions[1])
+#define ARM_POSITION_SCORING (arm_positions[2])
+#define ARM_POSITION_ALLIANCE_STAKE 500
 #define ARM_I_FOR_SCORING 2
+#define ARM_SCORING_HOOKS_BACKSPEED -10
 
 //Intake + Hooks Settings
 inline pros::MotorGroup intake_rollers_and_hooks({2, 1});
