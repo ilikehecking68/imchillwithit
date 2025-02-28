@@ -1,6 +1,7 @@
 #include "settings.hpp"
 #include "main.h"
 #include "colorsort.hpp"
+#include "arm_pid.hpp"
 
 void skills_v1() {
     arm_motor.move(127);
@@ -69,24 +70,27 @@ void skills_v1() {
     chassis.waitUntilDone();
     mogo.set_value(false);
     intake_rollers_and_hooks.move(50);
-    chassis.moveToPose(20, -95, -135, 10000, {.lead = 0.2, .minSpeed = 110});
+    chassis.moveToPose(22, -98, -135, 10000, {.lead = 0.2, .minSpeed = 110});
     chassis.waitUntilDone();
-    intake_rollers_and_hooks.move(5);
-    chassis.turnToHeading(80, 1000, {.minSpeed = 110});
+    intake_rollers_and_hooks.move(10);
+    chassis.turnToHeading(80, 1000, {.minSpeed = 100});
     chassis.waitUntilDone();
-    chassis.moveToPose(-13, -105, 80, 5000, {.forwards = false, .lead = 0.3, .maxSpeed = 25});
+    chassis.moveToPose(-10, -105, 80, 4000, {.forwards = false, .lead = 0.3, .maxSpeed = 30});
     chassis.waitUntilDone();
-    pros::delay(15);
     mogo.set_value(true);
-    pros::delay(50);
+    pros::delay(100);
     intake_rollers_and_hooks.move(127);
-    chassis.moveToPose(-54, -80, 180, 6000, {.lead = 0.75, .minSpeed = 80});
+    chassis.moveToPose(-34, -84, -90, 6000, {.lead = 0.75, .maxSpeed = 72, .minSpeed = 70, .earlyExitRange = 2});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-20, -110, 3000, {.maxSpeed = 80});
+    chassis.moveToPoint(-60, -85, 3000, {.maxSpeed = 50});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(-55, -85, 1800, {.minSpeed = 80});
+    chassis.waitUntilDone();
+    chassis.turnToHeading(170, 1000, {.maxSpeed = 52, .minSpeed = 50});
+    chassis.moveToPose(0, -105, 90, 8000, {.lead = 0.7, .minSpeed = 100, .earlyExitRange = 3.5});
     chassis.waitUntilDone();
     racism = racist_to_blue;
     intake_helper_task.resume();
-
 
     //chassis.moveToPoint(-55, -2, 3000, {.forwards = false, .minSpeed = 60});
     //chassis.waitUntilDone();
@@ -148,7 +152,6 @@ void goal_rush_finals_blue(){
     dR.set_value(false);
     chassis.moveToPose(35.936, 20.967, 11.9, 2000, {.forwards = false, .lead = 0.5, .minSpeed = 120});
     chassis.waitUntilDone();
-    
 }
 
 void autonomous() {
