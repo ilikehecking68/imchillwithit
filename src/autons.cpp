@@ -7,6 +7,7 @@ void skills_v1() {
     ARM_SET_AND_WAIT(ARM_POSITION_ALLIANCE_STAKE);
     pros::delay(1000);
     arm::arm_pid_set_target(ARM_POSITION_LOWEST);
+    pros::delay(500);
     mogo.set_value(false);
     chassis.setPose(0, 0, -40);
     chassis.moveToPoint(9, -10.5, 1000, {.forwards = false, .maxSpeed = 38, .minSpeed = 35});
@@ -87,12 +88,28 @@ void skills_v1() {
     chassis.moveToPoint(-55, -77, 1800, {.minSpeed = 80});
     chassis.waitUntilDone();
     chassis.turnToHeading(165, 1000, {.maxSpeed = 52, .minSpeed = 50});
-    chassis.moveToPose(0, -105, 90, 8000, {.lead = 0.4, .minSpeed = 100});
+    chassis.moveToPose(32, -105, 90, 8000, {.lead = 0.4, .minSpeed = 100});
     chassis.waitUntilDone();
     racism = racist_to_blue;
     intake_helper_task.resume();
-    chassis.moveToPoint(-25, -105, 2000, {.maxSpeed = 54, .minSpeed = 52});
+    chassis.moveToPoint(50, -105, 2000, {.maxSpeed = 54, .minSpeed = 52});
     chassis.waitUntilDone();
+    chassis.moveToPose(36, -105, 0, 2000, {.lead = 0.3, .maxSpeed = 54, .minSpeed = 52});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(46, 75, 1900, {.maxSpeed = 60});
+    chassis.waitUntilDone();
+    chassis.turnToHeading(180, 1000, {.maxSpeed = 52, .minSpeed = 50});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(36, -120, 2500, {.maxSpeed = 55});
+    chassis.turnToHeading(-45, 800, {.maxSpeed = 60});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(55, -130, 2000, {.forwards = false, .maxSpeed = 40});
+    chassis.waitUntilDone();
+    mogo.set_value(false);
+    pros::delay(150);
+    chassis.moveToPoint(-35, -127, 3000, {.minSpeed = 100});
+    chassis.waitUntilDone();
+
 
 
     //chassis.moveToPoint(-55, -2, 3000, {.forwards = false, .minSpeed = 60});
