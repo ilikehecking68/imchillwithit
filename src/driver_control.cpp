@@ -57,9 +57,6 @@ void arm_move(){
 f80 drive_curve_max = (USER_CONTROL_DRIVE_CURVE((127)));
 #define USER_CONTROL_DRIVE_CURVE_SCALED(original)(127 / drive_curve_max * (USER_CONTROL_DRIVE_CURVE((original))))
 void opcontrol(){
-    //color sort
-    racism = racist_to_blue;
-    intake_helper_task.resume();
     while (true){
         int straight_joystick_value = (USER_CONTROL_DRIVE_CURVE_SCALED(USER_CONTROL_DRIVE_JOYSTICK)) * (USER_CONTROL_DRIVE_SPEED_PERCENT) * 0.01;
         if (std::abs(straight_joystick_value) < USER_CONTROL_JOYSTICK_DEADZONE){
