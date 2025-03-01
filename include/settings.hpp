@@ -24,11 +24,12 @@ inline pros::Rotation arm_rs(9);
 #define ARM_PID_INTEGRAL_LIMIT 999
 #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
-inline f64 arm_positions[] = {-125, 28, 350};
+inline f64 arm_positions[] = {-110, 28, 350};
 #define ARM_POSITION_LOWEST (arm_positions[0])
 #define ARM_POSITION_LOADING (arm_positions[1])
 #define ARM_POSITION_SCORING (arm_positions[2])
-#define ARM_POSITION_ALLIANCE_STAKE 435
+#define ARM_POSITION_ALLIANCE_STAKE_SKILLS 435
+#define ARM_POSITION_ALLIANCE_STAKE_SOLO_AWP_BLUE 420
 #define ARM_I_FOR_SCORING 2
 #define ARM_SCORING_HOOKS_BACKSPEED -10
 #define ARM_BUTTON_TO_TIP_MOGO controller.get_digital_new_press(DIGITAL_RIGHT)

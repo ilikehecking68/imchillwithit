@@ -50,13 +50,16 @@ void arm_move(){
         hooks.move(-10);
     }
     if ((ARM_BUTTON_TO_TIP_MOGO)){
-        arm::arm_pid_set_target(ARM_POSITION_ALLIANCE_STAKE);
+        arm::arm_pid_set_target(ARM_POSITION_ALLIANCE_STAKE_SKILLS);
     }
 }
 
 f80 drive_curve_max = (USER_CONTROL_DRIVE_CURVE((127)));
 #define USER_CONTROL_DRIVE_CURVE_SCALED(original)(127 / drive_curve_max * (USER_CONTROL_DRIVE_CURVE((original))))
 void opcontrol(){
+    //color sort
+    racism = racist_to_blue;
+    intake_helper_task.resume();
     while (true){
         int straight_joystick_value = (USER_CONTROL_DRIVE_CURVE_SCALED(USER_CONTROL_DRIVE_JOYSTICK)) * (USER_CONTROL_DRIVE_SPEED_PERCENT) * 0.01;
         if (std::abs(straight_joystick_value) < USER_CONTROL_JOYSTICK_DEADZONE){
