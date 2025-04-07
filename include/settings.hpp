@@ -16,15 +16,15 @@ inline pros::MotorGroup right_drive(/*ports*/{19, 18, -20}, pros::MotorGears::bl
 inline pros::MotorGroup left_drive(/*ports*/{-13, -14, 12}, pros::MotorGears::blue, pros::MotorEncoderUnits::degrees);
 
 //Arm + Arm-PID settings
-inline pros::Motor arm_motor(10 /*port*/, pros::MotorGears::green, pros::MotorEncoderUnits::degrees);
+inline pros::Motor arm_motor(-10 /*port*/, pros::MotorGears::green, pros::MotorEncoderUnits::degrees);
 inline pros::Rotation arm_rs(9);
 #define ARM_PID_GET_DEGREES (double)(arm_rs.get_position() / 100)
-#define ARM_PID_CONSTANTS /*kp*/ 3.5, /*ki*/ 0, /*kd*/ 17
+#define ARM_PID_CONSTANTS /*kp*/ 1.9, /*ki*/ 0, /*kd*/ 5.5
 #define ARM_PID_ERROR_DEADZONE 5
 #define ARM_PID_INTEGRAL_LIMIT 999
 #define ARM_PID_CYCLES_REQUIRED_IN_ERROR_FOR_EXIT 1
 #define ARM_POSITION_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_DOWN)
-inline f64 arm_positions[] = {-69, 40, 350};
+inline f64 arm_positions[] = {2, 48, 180};
 #define ARM_POSITION_LOWEST (arm_positions[0])
 #define ARM_POSITION_LOADING (arm_positions[1])
 #define ARM_POSITION_SCORING (arm_positions[2])
