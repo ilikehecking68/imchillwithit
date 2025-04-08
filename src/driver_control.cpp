@@ -46,10 +46,11 @@ void arm_move(){
         arm::arm_pid_set_target(ARM_POSITION_ALLIANCE_STAKE_SKILLS);
     }
     if (controller.get_digital(DIGITAL_R1)){
-        arm::arm_pid_set_target(arm::arm_pid_get_target() + 5);
+        float offseted_arm_target = arm::arm_pid_get_target() + 3;
+        arm::arm_pid_set_target(offseted_arm_target <= 300 ? offseted_arm_target : 300);
     }
     if (controller.get_digital(DIGITAL_R2)){
-        float offseted_arm_target = arm::arm_pid_get_target() - 5;
+        float offseted_arm_target = arm::arm_pid_get_target() - 4;
         arm::arm_pid_set_target(offseted_arm_target >= ARM_POSITION_LOWEST ? offseted_arm_target : ARM_POSITION_LOWEST);
     }
 }

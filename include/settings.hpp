@@ -10,7 +10,7 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 #define USER_CONTROL_TURN_JOYSTICK controller.get_analog(ANALOG_RIGHT_X)
 #define USER_CONTROL_JOYSTICK_DEADZONE 12
 #define USER_CONTROL_DRIVE_SPEED_PERCENT 100
-#define USER_CONTROL_TURN_SPEED_PERCENT 80
+#define USER_CONTROL_TURN_SPEED_PERCENT -80
 #define USER_CONTROL_DRIVE_CURVE(original) original/*0.01 * std::fabs(original)*original*/
 inline pros::MotorGroup right_drive(/*ports*/{11, 12, 13}, pros::MotorGears::blue, pros::MotorEncoderUnits::degrees);
 inline pros::MotorGroup left_drive(/*ports*/{-18, -20, -19}, pros::MotorGears::blue, pros::MotorEncoderUnits::degrees);
@@ -49,7 +49,7 @@ inline pros::ADIDigitalOut dL('H', false);
 #define USER_CONTROL_DOINKER_RIGHT_BUTTON controller.get_digital_new_press(DIGITAL_UP)
 #define USER_CONTROL_DOINKER_LEFT_BUTTON controller.get_digital_new_press(DIGITAL_X)
 inline pros::ADIDigitalOut mogo('D', false);
-#define USER_CONTROL_MOGO_BUTTON controller.get_digital_new_press(DIGITAL_A)
+#define USER_CONTROL_MOGO_BUTTON controller.get_digital_new_press(DIGITAL_RIGHT)
 
 //Color Sort + Optical Sensor Settings
 inline pros::Optical optical(5);

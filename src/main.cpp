@@ -29,8 +29,7 @@ void initialize() {
     chassis.calibrate(); // calibrate sensors
     optical.set_led_pwm(100);
     optical.set_integration_time(20);
-    racism = racist_to_blue;
-    intake_helper_task.resume();
+    intake_helper_task.suspend();
     arm_motor.tare_position();
     arm::arm_pid_task.resume();
     //arm_rs.reverse();
