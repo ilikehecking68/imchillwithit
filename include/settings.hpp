@@ -46,14 +46,16 @@ inline pros::Motor hooks(-9);
 //Doinker + Mobile-Goal-Clamp Settings
 inline pros::ADIDigitalOut dR('A', false);
 inline pros::ADIDigitalOut dL('H', false);
-#define USER_CONTROL_DOINKER_RIGHT_BUTTON controller.get_digital_new_press(DIGITAL_UP)
-#define USER_CONTROL_DOINKER_LEFT_BUTTON controller.get_digital_new_press(DIGITAL_X)
+#define USER_CONTROL_DOINKER_RIGHT_BUTTON controller.get_digital_new_press(DIGITAL_X)
+#define USER_CONTROL_DOINKER_LEFT_BUTTON controller.get_digital_new_press(DIGITAL_UP)
 inline pros::ADIDigitalOut mogo('D', false);
 #define USER_CONTROL_MOGO_BUTTON controller.get_digital_new_press(DIGITAL_RIGHT)
 
 //Color Sort + Optical Sensor Settings
 inline pros::Optical optical(5);
 #define COLOR_SORT_THRESHOLD 50
+#define COLOR_SORT_DRIVER_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_LEFT)
+#define COLOR_SORT_RACISM_TOGGLE_BUTTON controller.get_digital_new_press(DIGITAL_A)
 
 //Chassis + Lemlib Settings
 inline pros::IMU imu(3);

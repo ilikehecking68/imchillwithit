@@ -24,6 +24,7 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+
 void initialize() {
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
@@ -32,20 +33,20 @@ void initialize() {
     intake_helper_task.suspend();
     arm_motor.tare_position();
     arm::arm_pid_task.resume();
+    racism = racist_to_red;
     //arm_rs.reverse();
     arm_rs.reset_position();
     // print position to brain screen
-    pros::Task screen_task([&]() {
+    /*pros::Task screen_task([&]() {
         pros::Mutex mut;
         while (true) {
             // print robot location to the brain screen
             mut.take();
-            pros::lcd::print(1, "X: %f, Y: %f, Theta: %f", chassis.getPose().x, chassis.getPose().y, chassis.getPose().theta);
             mut.give();
             // delay to save resources
             pros::delay(20);
         }
-    });
+    });*/
 }
 
 /**
