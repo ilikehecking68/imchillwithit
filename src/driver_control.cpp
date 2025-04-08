@@ -86,6 +86,7 @@ void opcontrol(){
         right_drive.move(straight_joystick_value - turn_joystick_value);
         pros::lcd::print(6, "arm_rs read position: %lf", (f64)(ARM_PID_GET_DEGREES));
         pros::lcd::print(7, arm::reached_target() ? "arm pid has reached target position" : "arm pid is moving to target position");
+        controller.clear_line(1);
         controller.print(1, 0, "cse:%s,css:%s", color_sort_enabled ? "e" : "d", racism ? "r" : "b");
         mogo_and_doinker();
         intake_and_hooks();
