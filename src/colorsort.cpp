@@ -53,7 +53,7 @@ pros::Task intake_helper_task([] {
         if (verdict) {
             cs_outtake_ticks = 420 / 20;
             if (!prev_verdict) {
-                cs_outtake_delay = 10 / 20;
+                cs_outtake_delay = 11;
             }
         }
 

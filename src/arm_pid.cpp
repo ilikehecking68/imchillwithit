@@ -36,7 +36,7 @@ pros::Task arm::arm_pid_task {[]{
     while (true){
         mut.take();
         error = target - (ARM_PID_GET_DEGREES);
-        arm_motor.move(arm::arm_pid.update(error));
+        arm_motor.move(arm::arm_pid.update(error) * (ARM_PID_MULTIPLIER));
         mut.give();
         pros::delay(10);
     }

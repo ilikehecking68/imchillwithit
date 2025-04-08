@@ -29,10 +29,12 @@ void initialize() {
     chassis.calibrate(); // calibrate sensors
     optical.set_led_pwm(100);
     optical.set_integration_time(20);
-    intake_helper_task.suspend();
-    arm_rs.reset_position();
-    arm_rs.reverse();
+    racism = racist_to_blue;
+    intake_helper_task.resume();
+    arm_motor.tare_position();
     arm::arm_pid_task.resume();
+    //arm_rs.reverse();
+    arm_rs.reset_position();
     // print position to brain screen
     pros::Task screen_task([&]() {
         pros::Mutex mut;

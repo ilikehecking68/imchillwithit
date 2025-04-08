@@ -5,17 +5,14 @@
 
 void intake_and_hooks(){
     if ((USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_IN_BUTTON)){
-        intake_rollers.move(127);
         if (!intake_override){
             hooks.move(127);
         }
     } else if ((USER_CONTROL_HOOK_AND_INTAKE_ROLLERS_OUT_BUTTON)){
-        intake_rollers.move(-127);
         if (!intake_override){
             hooks.move(-127);
         }
     } else {
-        intake_rollers.move(0);
         if (!intake_override){
             hooks.move(0);
         }
@@ -43,14 +40,17 @@ void mogo_and_doinker(){
 u64 arm_pos_i = 0;
 void arm_move(){
     if ((ARM_POSITION_TOGGLE_BUTTON)){
-        arm_pos_i = arm_pos_i < (sizeof(arm_positions) / sizeof(arm_positions[0]) - 1) ? arm_pos_i + 1 : 0;
-        arm::arm_pid_set_target(arm_positions[arm_pos_i]);
-    }
-    if (arm_pos_i == (ARM_I_FOR_SCORING)){
-        hooks.move(-10);
+        arm::arm_pid_set_target(ARM_POSITION_LOADING);
     }
     if ((ARM_BUTTON_TO_TIP_MOGO)){
         arm::arm_pid_set_target(ARM_POSITION_ALLIANCE_STAKE_SKILLS);
+    }
+    if (controller.get_digital(DIGITAL_R1)){
+        arm::arm_pid_set_target(arm::arm_pid_get_target() + 5);
+    }
+    if (controller.get_digital(DIGITAL_R2)){
+        float offseted_arm_target = arm::arm_pid_get_target() - 5;
+        arm::arm_pid_set_target(offseted_arm_target >= ARM_POSITION_LOWEST ? offseted_arm_target : ARM_POSITION_LOWEST);
     }
 }
 
